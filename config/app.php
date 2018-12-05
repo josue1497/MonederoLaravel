@@ -229,6 +229,7 @@ return [
         //Para el formularo de categoria con Laravel COllective
         'Form' => Collective\Html\FormFacade::class,
         'Html' =>Collective\Html\HtmlFacade::class,
+        'Category'=>App\Category::class,
 
     ],
 

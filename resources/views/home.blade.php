@@ -18,6 +18,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-body">
+                        <a href="/movements/create" class="btn btn-primary">Crear Movimiento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

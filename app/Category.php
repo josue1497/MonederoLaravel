@@ -9,4 +9,7 @@ class Category extends Model
     protected $table='categories';
     protected $fillable=['name'];
 
+    public function name(){
+        return $this->attributes['name'];
+    }
 }

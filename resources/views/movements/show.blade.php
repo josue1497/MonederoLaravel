@@ -7,19 +7,19 @@
 <table class="table table-bordered">
     <tr>
         <th>Tipo</th>
-        <td>{{$$movement->type}}</td>
+        <td>{{$movement->type}}</td>
     </tr>
     <tr>
         <td>Fecha</td>
-        <td>{{$movement->movement_date-format(d-m-Y)}}</td>
+        <td>{{$movement->movement_date->format('d-m-Y')}}</td>
     </tr>
     <tr>
         <td>Categoria</td>
-        <td>{{$movement->category->name}}</td>
+        <td>{{Category::find($movement->category_id)->name}}</td>
     </tr>
     <tr>
         <td>BsS.</td>
-        <td><{{number_format($movment->money_decimal,2)}}/td>
+        <td>{{number_format($movement->money_decimal,2)}}</td>
     </tr>
     <tr>
         <th>Descripción</th>

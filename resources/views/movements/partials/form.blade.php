@@ -19,7 +19,7 @@
         {!! Form::label('type', 'Fecha') !!}
 
         {!! Form::select('type',
-            ['E'=>'Egreso','I'=>'Ingreso'],
+            ['Egreso'=>'Egreso','Ingreso'=>'Ingreso'],
             null,
             ['required',
             'class'=>'form-control']) !!}

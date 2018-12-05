@@ -26,7 +26,7 @@ class MovementRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'=>['required',Rule::in(['E','I'])],
+            'type'=>['required',Rule::in(['Egreso','Ingreso'])],
             'movement_date'=>'required|date',
             'description'=> 'required|min:3|max:1000',
             'money_decimal'=> 'required|numeric|min:0.01',

@@ -41,11 +41,12 @@ class MovementsController extends Controller
      */
     public function store(MovementRequest $request)
     {
-       $movement = new Movement();
+       $validated = $request->validated();
+       $movement = new Movement($validated);
        $movement->money=$request->get('money-decimal')*100;
        $movement->user_id=auth()->user()->id;
 
-       $movement->category=Category::first($request->get('category_id'))->id;
+       $movement->category_id=Category::find($request->get('category_id'))->id;
 
        if($request->hasFile('image')){
            $image=$request->file('image');
@@ -56,7 +57,7 @@ class MovementsController extends Controller
 
        $movement->save();
 
-       return redirect()->route('movement.show',$movement);
+       return redirect()->route('movements.show',$movement);
 
     }
 

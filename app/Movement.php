@@ -8,8 +8,8 @@ class Movement extends Model
 {
     protected $table='movements';
     protected $fillable=[
-        'movement_date',
         'type',
+        'movement_date',
         'description',
         'money'
     ];
@@ -23,7 +23,7 @@ class Movement extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category(){
+    public function category_id(){
         return $this->belongsTo(Category::class);
     }
 }

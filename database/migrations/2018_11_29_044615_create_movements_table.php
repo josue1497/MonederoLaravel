@@ -14,15 +14,18 @@ class CreateMovementsTable extends Migration
     public function up()
     {
         Schema::create('movements', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
             $table->string('type', 50);
-            $table->dateTime('movement_date');
+            $table->date('movement_date');
             $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('description',1000);
             $table->unsignedInteger('money');
             $table->string('image')->nullable();
             $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
