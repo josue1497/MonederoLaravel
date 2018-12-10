@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-  <div>
+<div class="p-md-3 m-md-3">
       <div class="row">
-          <div class="col col-md-6 col-md-offset-5">
+          <div class="col col-md-12 col-md-offset-5">
 
                 <h1>Movimiento Nuevo</h1>
 

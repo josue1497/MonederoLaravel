@@ -11,14 +11,30 @@ use App\Http\Requests\MovementRequest;
 
 class MovementsController extends Controller
 {
+
+    public function __contructor(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $title='Movimientos';
+
+        $movements = Movement::where('user_id', auth()->user()->id);
+
+        if($request->has('type')){
+            $movements = $movements->where('type', $request->get('type'));
+            $title ='Movimientos de '. $request->get('type');
+        }
+
+        $movements = $movements->orderBy('movement_date', 'desc')->paginate(2);
+
+        return view('movements.index', compact('movements', 'title'));
     }
 
     /**
@@ -43,7 +59,8 @@ class MovementsController extends Controller
     {
        $validated = $request->validated();
        $movement = new Movement($validated);
-       $movement->money=$request->get('money-decimal')*100;
+       $money=$request->money_decimal*100;
+       $movement->money=$money;
        $movement->user_id=auth()->user()->id;
 
        $movement->category_id=Category::find($request->get('category_id'))->id;
@@ -83,7 +100,12 @@ class MovementsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::orderBy('name')->pluck('name', 'id');
+        $movement = Movement::where('user_id', auth()->user()->id)
+        ->where('id',$id)
+        ->first();
+
+        return view('movements.edit', compact('categories', 'movement'));
     }
 
     /**
@@ -93,9 +115,31 @@ class MovementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MovementRequest $request, $id)
     {
-        //
+        $movement = Movement::where('user_id', auth()->user()->id)
+        ->where('id',$id)
+        ->first();
+
+        $movement->type=$request->type;
+        $movement->movement_date=$request->movement_date;
+        $movement->money = $request->money_decimal*100;
+        $movement->description=$request->description;
+
+        $movement->category_id=Category::find($request->get('category_id'))->id;
+
+        if($request->hasFile('image')){
+            $image=$request->file('image');
+
+            $file = $image ->store('images/movements');
+            $movement->image=$file;
+        }
+
+        $movement->save();
+
+        return redirect()->route('movements.show',$movement);
+
+
     }
 
     /**

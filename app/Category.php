@@ -12,4 +12,8 @@ class Category extends Model
     public function name(){
         return $this->attributes['name'];
     }
+
+    public function movement(){
+        return $this->hasMany(Movement::class);
+    }
 }

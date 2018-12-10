@@ -23,7 +23,7 @@ class Movement extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category_id(){
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 }

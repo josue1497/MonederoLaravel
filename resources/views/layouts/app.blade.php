@@ -33,7 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(Auth::check())
+                            <li class="list-inline-item">
+                                <a href="{{route('movements.create')}}"> Crear Movimiento </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{route('movements.index')}}"> Lista de Movimientos </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ route('movements.index') }}?type=Ingreso">Ingresos </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{ route('movements.index') }}?type=Egreso"> Egresos </a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -73,12 +86,20 @@
         </nav>
 
         <main class="py-4">
+
                 <div class="panel panel-default">
                     <div class="panel-body">
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <div class="card">
                         @yield('content')
+                                            </div></div></div>
                 </div>
             </div>
+
         </main>
+
     </div>
 </body>
 </html>

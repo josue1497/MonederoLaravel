@@ -4,7 +4,7 @@
     {!! Form::label('movement_date', 'Fecha') !!}
 
     {!! Form::date('movement_date', ($movement->movement_date)?
-    $movement->movemente_date->format('Y-m-d'):
+    $movement->movement_date->format('Y-m-d'):
     date('Y-m-d'), ['required',
     'class'=>'form-control']) !!}
     @if($errors->has('movement_date'))
@@ -31,7 +31,7 @@
         @endif
     </div>
 
-<div class="form-group{{$errors -> has ('movement_conroller')? ' has-errors':''}}">
+<div class="form-group{{$errors -> has ('category_id')? ' has-errors':''}}">
 
         {!! Form::label('category_id', 'Categoria') !!}
 
